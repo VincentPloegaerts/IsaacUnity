@@ -1,12 +1,21 @@
 using UnityEngine;
 
-public class Room 
+[System.Serializable]
+public class Room
 {
-    public Vector2 gridPos;
+    [SerializeField] public Vector2 gridPos;
     public int type;
     public bool doorTop, doorBot, doorLeft, doorRight;
-    public Room(Vector2 _gridPos, int _type){
+
+    public Room(Vector2 _gridPos, int _type)
+    {
         gridPos = _gridPos;
         type = _type;
+        doorTop = doorBot = doorLeft = doorRight = false;
+    }
+
+    public Room()
+    {
+        
     }
 }

@@ -241,6 +241,11 @@ MonoBehaviour:
   randomCompareMax: 0.02
   randomCompareMin: 0.01
   takenPositions: []
+  roomDimensions: {x: 10, y: 7}
+  gutterSize: {x: 0, y: 0}
+  roomPrefabList:
+  - {fileID: 1511761753706773331, guid: 88e72d2b25c100b42b7336f8d7724607, type: 3}
+  - {fileID: 1511761753706773331, guid: 2b286efa0c0133f4db423e31f51e5740, type: 3}
 --- !u!4 &1935450077
 Transform:
   m_ObjectHideFlags: 0
