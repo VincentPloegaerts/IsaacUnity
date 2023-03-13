@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class LevelGenerator : MonoBehaviour
+public class LevelGenerator : MySingleton<LevelGenerator>
 {
     [SerializeField] Vector2 worldSize = new Vector2(5, 5);
     [SerializeField] int numberOfRooms = 25;
@@ -18,6 +18,8 @@ public class LevelGenerator : MonoBehaviour
     int gridSizeY = 0;
 
     float randomCompare = 0.2f;
+    
+    public Vector2 RoomDimensions => roomDimensions;
     void Start()
     {
         if (numberOfRooms >= worldSize.x * worldSize.y * 4) // make sure we dont try to make more rooms than can fit in our grid
@@ -83,10 +85,11 @@ public class LevelGenerator : MonoBehaviour
         return checkingPos;
     }
     
-    Vector2 SelectiveNewPosition(){ //Same logic as NewPosition but takes more time to ensure some branching
+    Vector2 SelectiveNewPosition()  //Same logic as NewPosition but takes more time to ensure some branching
+    { 
         int index = 0, inc = 0;
         int x =0, y =0;
-        Vector2 checkingPos = Vector2.zero;
+        Vector2 checkingPos;
         do
         {
             inc = 0;
@@ -162,12 +165,12 @@ public class LevelGenerator : MonoBehaviour
     
     void OnDrawGizmos()
     {
-        return;
-        for (int i = 0; i < takenPositions.Count; i++)
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(takenPositions[i],0.2f);
-            Texture2D _tex;
-        }
+        // return;
+        // for (int i = 0; i < takenPositions.Count; i++)
+        // {
+        //     Gizmos.color = Color.yellow;
+        //     Gizmos.DrawSphere(takenPositions[i],0.2f);
+        //     Texture2D _tex;
+        // }
     }
 }
