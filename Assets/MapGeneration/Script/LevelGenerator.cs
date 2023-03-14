@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,7 +14,9 @@ public class LevelGenerator : MySingleton<LevelGenerator>
     [SerializeField] Vector2 roomDimensions = new Vector2(16*17,16*9);
     [SerializeField] Vector2 gutterSize = new Vector2(16*9,16*4);
     [SerializeField] List<RoomObject> roomPrefabList = new List<RoomObject>();
+    [SerializeField] List<RoomObject> bossRoomPrefabList = new List<RoomObject>();
     Room[,] rooms;
+    Room bossRoom;
     int gridSizeX = 0;      //half extents
     int gridSizeY = 0;
 
@@ -21,19 +24,23 @@ public class LevelGenerator : MySingleton<LevelGenerator>
     
     public Vector2 RoomDimensions => roomDimensions;
     void Start()
-    {
+    {   
         if (numberOfRooms >= worldSize.x * worldSize.y * 4) // make sure we dont try to make more rooms than can fit in our grid
             numberOfRooms = Mathf.RoundToInt(worldSize.x  * worldSize.y * 4);
         gridSizeX = Mathf.RoundToInt(worldSize.x); 
         gridSizeY = Mathf.RoundToInt(worldSize.y);
+        StartNewLevel();
+        GameLogic.Instance.OnResetLevel += StartNewLevel;
+    }
+
+    void StartNewLevel()
+    {
         CreateRooms(); //lays out the actual map
         SetRoomDoors(); //assigns the doors where rooms would connect
         SpawnRooms(rooms);
         //DrawMap(); //instantiates objects to make up a map
-
-
     }
-
+    
     void CreateRooms()
     {
         rooms = new Room[gridSizeX * 2, gridSizeY * 2];
@@ -149,20 +156,55 @@ public class LevelGenerator : MySingleton<LevelGenerator>
             }
         }
     }
-
+    
     void SpawnRooms(Room[,] _rooms)
     {
-        foreach (Room room in _rooms){
-            if (room == null)
+        List<Room> _roomsForBoss = new List<Room>();
+        foreach (Room _room in _rooms)
+        {
+            if (_room == null)
                 continue;                   //there's no room on this tile
-            
-            int index = Mathf.RoundToInt(Random.value * (roomPrefabList.Count -1));
-            Vector3 pos = new Vector3(room.gridPos.x * roomDimensions.x, room.gridPos.y * roomDimensions.y, 0); //find position to place room
-            RoomObject _currentRoom = Instantiate(roomPrefabList[index], pos, Quaternion.identity);
-            _currentRoom.InitRoom(room);
+            if (_room.NumberOfNeighbours == 1)
+            {
+                _roomsForBoss.Add(_room);
+                continue;                   //don't spawn rooms on the ends of the map
+            }
+            SpawnRoom(roomPrefabList, _room);
+        }
+        
+        List<Room> _orderedRooms = _roomsForBoss.OrderBy(r => r.gridPos.magnitude).Reverse().ToList();
+        int _bossRommIndex = Mathf.RoundToInt(Random.value * ((_orderedRooms.Count > 3 ? 3 : _orderedRooms.Count) - 1));   //Select the boss room among the 3 furthest ends
+        bossRoom = _orderedRooms[_bossRommIndex];
+
+        SpawnRoom(bossRoomPrefabList,bossRoom);
+        _roomsForBoss.Remove(bossRoom);        //don't forget to remove it so it doesn't spawn twice
+        
+        foreach (Room _room in _roomsForBoss)        //spawn the remaining rooms
+        {
+            SpawnRoom(roomPrefabList,_room);
         }
     }
-    
+
+    void SpawnRoom(List<RoomObject> _roomObjectsPrefabs,Room _room)
+    {
+        int index = 0;
+        do
+        {
+            index = Mathf.RoundToInt(Random.value * (_roomObjectsPrefabs.Count - 1));
+        } while (!IsRoomObjectValid(_roomObjectsPrefabs[index], _room));
+        Vector3 pos = new Vector3(_room.gridPos.x * roomDimensions.x, _room.gridPos.y * roomDimensions.y, 0); //find position to place room
+        RoomObject _currentRoom = Instantiate(_roomObjectsPrefabs[index], pos, Quaternion.identity);
+        _currentRoom.InitRoom(_room);
+    }
+
+    bool IsRoomObjectValid(RoomObject _roomObject, Room _room)
+    {
+        if (_room.doorTop && !_roomObject.DoorTop) return false;
+        if (_room.doorLeft && !_roomObject.DoorLeft) return false;
+        if (_room.doorRight && !_roomObject.DoorRight) return false;
+        if (_room.doorBot && !_roomObject.DoorDown) return false;
+        return true;
+    }
     void OnDrawGizmos()
     {
         // return;

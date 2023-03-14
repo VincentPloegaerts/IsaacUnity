@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5904293434269032018}
   - component: {fileID: 5904293434269032019}
+  - component: {fileID: 4318552953794239280}
   m_Layer: 0
   m_Name: GameLogic
   m_TagString: Untagged
@@ -49,7 +50,23 @@ MonoBehaviour:
   randomCompareMax: 0.2
   randomCompareMin: 0.01
   takenPositions: []
-  roomDimensions: {x: 20, y: 14}
+  roomDimensions: {x: 19, y: 10}
   gutterSize: {x: 0, y: 0}
   roomPrefabList:
   - {fileID: 1511761753706773331, guid: 0dbbe25cdb65fb047b9b6956c1828ed1, type: 3}
+  - {fileID: 1511761753706773331, guid: e4bb37d7148a6884abeee3f43c508862, type: 3}
+  bossRoomPrefabList:
+  - {fileID: 1511761753706773331, guid: 00262203b9cad8c4692b951592c9ad7d, type: 3}
+--- !u!114 &4318552953794239280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5904293434269032020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd12f7fc638c27a489e7473466c3e1c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRef: {fileID: 0}
