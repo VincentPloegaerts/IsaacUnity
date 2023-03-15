@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(HealthSystem))]
 public class Player : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 1.0f;  
@@ -10,13 +11,15 @@ public class Player : MonoBehaviour
     static readonly int DirectionYHash = Animator.StringToHash("DirectionY");
     static readonly int MovementXHash = Animator.StringToHash("MovementX");
     static readonly int MovementYHash = Animator.StringToHash("MovementY");
-
+    HealthSystem healthSystem = null;
+    public HealthSystem HealthSystem => healthSystem;
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerRigidbody.useFullKinematicContacts = true;
         playerAnimationController = GetComponent<Animator>();
         GameLogic.Instance.OnResetLevel += ResetPlayer;
+        healthSystem = GetComponent<HealthSystem>();
     }
 
     void Update()
@@ -30,8 +33,7 @@ public class Player : MonoBehaviour
             playerAnimationController.SetFloat(DirectionXHash, direction.x); //change direction only if there's inputs so the player stays oriented the same way for the idle
             playerAnimationController.SetFloat(DirectionYHash, direction.y); //if the player let go of inputs
         }
-        playerRigidbody.MovePosition(playerRigidbody.position +  (moveSpeed / 10.0f) * direction); //player is too fast setting up speed between
-                                                                                                   //0 and 1 was a pain so added a /10 factor
+        playerRigidbody.MovePosition(playerRigidbody.position +  moveSpeed * Time.deltaTime * direction);
                                                                                                    
     }
 

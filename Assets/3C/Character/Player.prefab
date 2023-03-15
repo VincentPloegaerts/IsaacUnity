@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626122f3845ee5a4f964e4d0ec1ab322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 50
   playerRigidbody: {fileID: 8958238885066013288}
   direction: {x: 0, y: 0}
   playerAnimationController: {fileID: 6003789017367910194}

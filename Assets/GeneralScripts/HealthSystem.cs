@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
+    bool canTakeDamage = true;
+    bool isInInvincibilityFrames = false;
+    [SerializeField] bool HasInvincibity = false;
     public event Action<float> OnLostHealth;
     public event Action<float> OnRegainHealth;
     public event Action<float, float> OnHealthChanged;
@@ -14,7 +17,7 @@ public class HealthSystem : MonoBehaviour
 
     public void TakeDamage(float _damage)
     {
-        if (_damage <= 0) return;
+        if (!canTakeDamage || _damage <= 0) return;
         currentHealth -= _damage;
         currentHealth = currentHealth < 0 ? 0.0f : currentHealth;
         OnLostHealth?.Invoke(_damage);

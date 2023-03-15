@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
@@ -9,7 +9,7 @@ public class RoomObject : MonoBehaviour
     [SerializeField] GameObject doorRight = null;
     [SerializeField] GameObject doorLeft = null;
     [SerializeField] GameObject doorDown = null;
-    
+    [SerializeField] List<Enemy> enemiesInRoom = null;
     public GameObject DoorTop =>doorTop ;
     public GameObject DoorRight =>doorRight ;
     public GameObject DoorLeft => doorLeft;
@@ -38,8 +38,17 @@ public class RoomObject : MonoBehaviour
         Vector3 _pos = transform.position;
         currentCam.transform.position = new Vector3(_pos.x, _pos.y, -10.0f);
         Minimap.Instance.RoomDiscovered(this);
+        foreach (Enemy _enemy in enemiesInRoom)
+            _enemy.Activate();
+        GameLogic.Instance.NewCurrentRoom(this);
     }
 
+    public void DeactivateRoom()
+    {
+        foreach (Enemy _enemy in enemiesInRoom)
+            _enemy.Deactivate();
+    }
+    
     void LevelReseted()
     {
         Destroy(gameObject);
