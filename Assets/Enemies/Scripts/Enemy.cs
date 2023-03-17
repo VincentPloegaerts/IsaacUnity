@@ -7,10 +7,10 @@ public class Enemy : MonoBehaviour
 {
     protected Player playerRef = null;
     [SerializeField] protected bool isActive;
-    public event Action OnDeathEvent; 
+    public Action OnDeathEvent; 
     [SerializeField] protected float moveSpeed = 1.0f;
-    protected float damage = 1.0f;
-    [SerializeField]HealthSystem healthSystem = null;
+    [SerializeField] protected float damage = 1.0f;
+    [SerializeField] protected HealthSystem healthSystem = null;
 
     protected virtual void Awake()
     {

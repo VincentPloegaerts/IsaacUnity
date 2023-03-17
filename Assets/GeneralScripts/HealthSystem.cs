@@ -5,9 +5,12 @@ public class HealthSystem : MonoBehaviour
 {
     bool canTakeDamage = true;
     bool isInInvincibilityFrames = false;
-    [SerializeField] bool HasInvincibity = false;
+    [SerializeField] bool HasInvincibilityFrames = false;
+    [SerializeField] float invincibilityDuration = 0.2f;
+    float invincibilityProgress = 0.0f;
     public event Action<float> OnLostHealth;
     public event Action<float> OnRegainHealth;
+    public event Action OnDeath;
     public event Action<float, float> OnHealthChanged;
     [SerializeField] float currentHealth = 100.0f;
     [SerializeField] float maxHealth = 100.0f;
@@ -17,11 +20,18 @@ public class HealthSystem : MonoBehaviour
 
     public void TakeDamage(float _damage)
     {
-        if (!canTakeDamage || _damage <= 0) return;
+        if (!canTakeDamage || isInInvincibilityFrames || _damage <= 0) return;
         currentHealth -= _damage;
         currentHealth = currentHealth < 0 ? 0.0f : currentHealth;
         OnLostHealth?.Invoke(_damage);
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
+        if (currentHealth == 0.0f) 
+            OnDeath?.Invoke();
+        if (HasInvincibilityFrames)
+        {
+            isInInvincibilityFrames = true;
+            Invoke(nameof(InvincibilityEnded),invincibilityDuration);
+        }
     }
 
     public void RegainHealth(float _regen)
@@ -39,5 +49,10 @@ public class HealthSystem : MonoBehaviour
         if (_regen)
             currentHealth = maxHealth;
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
+    }
+
+    void InvincibilityEnded()
+    {
+        isInInvincibilityFrames = false;
     }
 }

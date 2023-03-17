@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5142504944412449032}
   - component: {fileID: 2701289040135240482}
   - component: {fileID: 9028042515915755596}
+  - component: {fileID: 3091275690259189809}
   m_Layer: 0
   m_Name: Fly (2)
   m_TagString: Untagged
@@ -100,6 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   moveSpeed: 50
+  damage: 10
+  healthSystem: {fileID: 0}
   toFollow: {fileID: 1395579029198093661}
 --- !u!58 &9028042515915755596
 CircleCollider2D:
@@ -117,6 +120,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.0000019073486}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &3091275690259189809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2418124863775471014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f04cb7dde6a3648a39a81334de4ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HasInvincibilityFrames: 0
+  invincibilityDuration: 0.2
+  currentHealth: 100
+  maxHealth: 100
 --- !u!1 &2438724192508991134
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,6 +148,7 @@ GameObject:
   - component: {fileID: 4738565737299142766}
   - component: {fileID: 7141339748481502120}
   - component: {fileID: 8199110159606997882}
+  - component: {fileID: 5433274499966667937}
   m_Layer: 0
   m_Name: Fly (4)
   m_TagString: Untagged
@@ -217,6 +237,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   moveSpeed: 50
+  damage: 10
+  healthSystem: {fileID: 0}
   toFollow: {fileID: 1395579029198093661}
 --- !u!58 &8199110159606997882
 CircleCollider2D:
@@ -234,6 +256,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.0000019073486}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &5433274499966667937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2438724192508991134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f04cb7dde6a3648a39a81334de4ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HasInvincibilityFrames: 0
+  invincibilityDuration: 0.2
+  currentHealth: 100
+  maxHealth: 100
 --- !u!1 &3035945810582570598
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,6 +284,7 @@ GameObject:
   - component: {fileID: 4677383094683793001}
   - component: {fileID: 336782007878378985}
   - component: {fileID: 2418831005593771721}
+  - component: {fileID: 8317799964304735748}
   m_Layer: 0
   m_Name: Fly (1)
   m_TagString: Untagged
@@ -334,6 +373,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   moveSpeed: 50
+  damage: 10
+  healthSystem: {fileID: 0}
   toFollow: {fileID: 1395579029198093661}
 --- !u!58 &2418831005593771721
 CircleCollider2D:
@@ -351,6 +392,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.0000019073486}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &8317799964304735748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3035945810582570598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f04cb7dde6a3648a39a81334de4ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HasInvincibilityFrames: 0
+  invincibilityDuration: 0.2
+  currentHealth: 100
+  maxHealth: 100
 --- !u!1 &4744237532461389645
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,6 +420,7 @@ GameObject:
   - component: {fileID: 6766752677999621370}
   - component: {fileID: 7895143989194701091}
   - component: {fileID: 4664641040442492103}
+  - component: {fileID: 8150953034824828502}
   m_Layer: 0
   m_Name: Fly (3)
   m_TagString: Untagged
@@ -451,6 +509,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   moveSpeed: 50
+  damage: 10
+  healthSystem: {fileID: 0}
   toFollow: {fileID: 1395579029198093661}
 --- !u!58 &4664641040442492103
 CircleCollider2D:
@@ -468,6 +528,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.0000019073486}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &8150953034824828502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4744237532461389645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f04cb7dde6a3648a39a81334de4ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HasInvincibilityFrames: 0
+  invincibilityDuration: 0.2
+  currentHealth: 100
+  maxHealth: 100
 --- !u!1 &5672170495797655581
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,6 +554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 887147619998229779}
   - component: {fileID: 1395579029198093661}
+  - component: {fileID: 3037001517058207877}
   m_Layer: 0
   m_Name: FlySwarm
   m_TagString: Untagged
@@ -520,10 +597,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   moveSpeed: 1
+  damage: 1
+  healthSystem: {fileID: 0}
   angleData:
     angle: 0
     distance: 0
     angleSpeed: 0
+--- !u!114 &3037001517058207877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5672170495797655581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f04cb7dde6a3648a39a81334de4ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HasInvincibilityFrames: 0
+  invincibilityDuration: 0.2
+  currentHealth: 100
+  maxHealth: 100
 --- !u!1 &5884962851888470739
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,6 +631,7 @@ GameObject:
   - component: {fileID: 6021877582481453410}
   - component: {fileID: 3583853228325752902}
   - component: {fileID: 1032418144660383334}
+  - component: {fileID: 6882429263363440010}
   m_Layer: 0
   m_Name: Fly
   m_TagString: Untagged
@@ -624,6 +720,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   moveSpeed: 50
+  damage: 10
+  healthSystem: {fileID: 0}
   toFollow: {fileID: 1395579029198093661}
 --- !u!58 &1032418144660383334
 CircleCollider2D:
@@ -641,6 +739,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.0000019073486}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &6882429263363440010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5884962851888470739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f04cb7dde6a3648a39a81334de4ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HasInvincibilityFrames: 0
+  invincibilityDuration: 0.2
+  currentHealth: 100
+  maxHealth: 100
 --- !u!1 &7469317155907015394
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,6 +767,7 @@ GameObject:
   - component: {fileID: 5721902469197515383}
   - component: {fileID: 6211511227059835213}
   - component: {fileID: 8657057966023950629}
+  - component: {fileID: 4696012328354953850}
   m_Layer: 0
   m_Name: Fly (5)
   m_TagString: Untagged
@@ -741,6 +856,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   moveSpeed: 50
+  damage: 10
+  healthSystem: {fileID: 0}
   toFollow: {fileID: 1395579029198093661}
 --- !u!58 &8657057966023950629
 CircleCollider2D:
@@ -758,3 +875,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.0000019073486}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &4696012328354953850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7469317155907015394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f04cb7dde6a3648a39a81334de4ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HasInvincibilityFrames: 0
+  invincibilityDuration: 0.2
+  currentHealth: 100
+  maxHealth: 100

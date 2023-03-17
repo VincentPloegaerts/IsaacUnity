@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(HealthSystem))]
@@ -13,13 +14,18 @@ public class Player : MonoBehaviour
     static readonly int MovementYHash = Animator.StringToHash("MovementY");
     HealthSystem healthSystem = null;
     public HealthSystem HealthSystem => healthSystem;
-    void Start()
+
+    void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
-        playerRigidbody.useFullKinematicContacts = true;
-        playerAnimationController = GetComponent<Animator>();
-        GameLogic.Instance.OnResetLevel += ResetPlayer;
         healthSystem = GetComponent<HealthSystem>();
+        playerAnimationController = GetComponent<Animator>();
+    }
+
+    void Start()
+    {
+        playerRigidbody.useFullKinematicContacts = true;
+        GameLogic.Instance.OnResetLevel += ResetPlayer;
     }
 
     void Update()

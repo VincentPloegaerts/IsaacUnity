@@ -33,6 +33,12 @@ public class SwarmFly : Enemy
         toFollow.AddFly(this);
     }
 
+    protected override void Start()
+    {
+        base.Start();
+        healthSystem.OnDeath += OnDeathEvent;
+    }
+
     void Update()
     {
         if (!isActive) return;
